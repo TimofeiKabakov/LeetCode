@@ -14,7 +14,7 @@ The **degree** of a node is the number of nodes it is connected to.
 - Adjacency list
 - Adjacency matrix (not efficient in terms of memory - O(n^2))
 
-![Alt text](image-2.png)
+![Alt text](img/image-2.png)
 
 ## Binary Trees
 
@@ -25,14 +25,14 @@ The **degree** of a node is the number of nodes it is connected to.
 A depth-first traversal starts at the root, and **always visits the children of a visited node before its siblings**. It does not make any guarantees about the order in which nodes on a particular level are visited.
 
 **Pseudocode:**
-![Alt text](image-3.png)
+![Alt text](img/image-3.png)
 
 **Iterative implementation with stack (js):**
-![Alt text](image-4.png)
+![Alt text](img/image-4.png)
 We can change the order of lines 33 and 34 to get a desired order of depth-first traversal.
 
 **Recursive implementation (js):**
-![Alt text](image-5.png)
+![Alt text](img/image-5.png)
 
 **Complexity:** O(n)
 
@@ -43,7 +43,7 @@ We can change the order of lines 33 and 34 to get a desired order of depth-first
 A breadth-first traversal starts at the root, and **always visits all the nodes on the current level of the tree before visiting nodes on the next level**. It does not make any guarantees about the order in which nodes on a particular level are visited.
 
 **Iterative implementation with queue (js):**
-![Alt text](image-6.png)
+![Alt text](img/image-6.png)
 
 **Complexity:** O(n)
 
@@ -83,7 +83,7 @@ If your tree is a **binary tree**, you can store it in a **flattened array** whe
 
 The root node is always at index 0 and the children of the current node i are accessed relative to position i.
 
-![Alt text](image-1.png)
+![Alt text](img/image-1.png)
 
 ## Theoretical Problems
 
@@ -91,17 +91,17 @@ The root node is always at index 0 and the children of the current node i are ac
 
 What is the sum of all leaf node values in a tree?
 
-![Alt text](image-7.png)
+![Alt text](img/image-7.png)
 
 ### Problem 2: Tree Height
 
 Find the height of a binary tree.
 
-![Alt text](image-8.png)
+![Alt text](img/image-8.png)
 
 OR
 
-![Alt text](image-9.png)
+![Alt text](img/image-9.png)
 
 ### Problem 3: Rooting a tree
 
@@ -113,9 +113,9 @@ In some situations, it is also useful to keep a reference to the parent node in 
 
 Rooting a tree is easily done with depth-first search (during the traversal).
 
-![Alt text](image-10.png)
+![Alt text](img/image-10.png)
 
-![Alt text](image-11.png)
+![Alt text](img/image-11.png)
 
 ### Problem 4: Tree center(s)
 
@@ -125,19 +125,19 @@ Notice that the center is always the middle vertex or middle two vertices in eve
 
 Another approach to find the center is to iteratively pick off each leaf node layer like we are peeling an onion --> identify the leaf nodes by counting the degree of each node and prune them.
 
-![Alt text](image-12.png)
+![Alt text](img/image-12.png)
 
 ### Problem 5: Identifying Isomorphic Trees
 
 The question of asking whether two graphs G1 and G2 are **isomorphic** is asking whether they are structurally the same.
 
-![Alt text](image-13.png)
+![Alt text](img/image-13.png)
 
 We can also define the notion of isomorphism more rigorously:
 
 G1(V1, E1) and G2(V2, E2) are isomorphic if there exists a **bijection** $\varphi$ between the sets V1 -> V2 such that:
 
-![Alt text](image-14.png)
+![Alt text](img/image-14.png)
 
 In simple terms, for an isomorphism to exist, there needs to be a function $\varphi$ which can map all the nodes/edges in G1 to G2 and vice-versa.
 
@@ -163,19 +163,19 @@ The **AHU** (Aho, Hopcroft, Ullman) algorithm is a clever serialization techniqu
 
 1. Assign all leaf nodes Knuth tuples: '()'
 2. Process all nodes with grayed out children, combine labels of their child nodes and wrap them in brackets. Notice that labels are **sorted** lexicographically when combined before wrapping them in brackets, this is important.
-   ![Alt text](image-15.png)
-   ![Alt text](image-16.png)
+   ![Alt text](img/image-15.png)
+   ![Alt text](img/image-16.png)
 3. You can not process a node until you have processed all its children.
 4. Repeat till the root
 
 #### Pseudocode
 
-![Alt text](image-18.png)
+![Alt text](img/image-18.png)
 
-![Alt text](image-17.png)
+![Alt text](img/image-17.png)
 In regards to the second tree's loop: we do not know what center to choose in case the second tree has two centers. Therefore, we try both and compare them to the encoding of the first tree.
 
-![Alt text](image-19.png)
+![Alt text](img/image-19.png)
 
 ### Problem 6: Lowest Common Ancestor (LCA) Problem | Eulerian path method
 
@@ -183,13 +183,13 @@ The **Lowest Common Ancestor (LCA)** of two nodes `a` and `b` in a **rooted tree
 
 Note: the notion of LCA also exists for Directed Acyclic Graphs (DAGs) but here we are only looking at LCA in the context of trees.
 
-![Alt text](image-20.png)
+![Alt text](img/image-20.png)
 
-![Alt text](image-21.png)
+![Alt text](img/image-21.png)
 
 You can also find LCA of more than 2 nodes.
 
-![Alt text](image-22.png)
+![Alt text](img/image-22.png)
 
 #### Eulerian tour + Range Minimum Query (RMQ) method
 
@@ -206,13 +206,13 @@ Given a tree we want to do LCA queries on, first:
 
 This method begins by finding an Eulerian tour of the edges in a rooted tree. Rather than doing an Eulerian tour on the white edges of our tree, we are going to do the Euler tour on a new set of imaginary **green edges** which wrap around the tree. This ensures that our tour visits every node in the tree.
 
-![Alt text](image-24.png)
+![Alt text](img/image-24.png)
 
 Start at the root node, traverse all green edges, and finally return to the root node. As you do this, keep track of which nodes you visit and this will be your Euler tour.
 
 We also need to keep track of depths while doing the Euler tour:
 
-![Alt text](image-25.png)
+![Alt text](img/image-25.png)
 
 What is **LCA(6, 5)** for this example?
 
@@ -230,18 +230,18 @@ The answer is that it **does not matter**. Any of the inverse index values will 
 
 To maintain the **inverse mapping**, we are going to keep track of some additional information, namely an inverse map called `map`. We are going to be saving the last encountered index position.
 
-![Alt text](image-26.png)
+![Alt text](img/image-26.png)
 
 #### Pseudocode
 
-![Alt text](image-27.png)
+![Alt text](img/image-27.png)
 
-![Alt text](image-28.png)
+![Alt text](img/image-28.png)
 
-![Alt text](image-29.png)
+![Alt text](img/image-29.png)
 
 Pay attention to the second `visit` call after calling `dfs` on the subtree. We do this, since we want to maintain proper tour_index, last, etc numbers.
 
-![Alt text](image-30.png)
+![Alt text](img/image-30.png)
 
 [Video: Lowest Common Ancestor (LCA) Problem | Eulerian path method](https://www.youtube.com/watch?v=sD1IoalFomA&list=PLDV1Zeh2NRsDfGc8rbQ0_58oEZQVtvoIc&index=7&ab_channel=WilliamFiset)
