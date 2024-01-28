@@ -1,8 +1,10 @@
 ## Trees
 
-A **tree** is an undirected graph with no cycles.
+A **tree** is an undirected connected graph with no cycles.
 
 Equivalently, a **tree** is a connected graph with N nodes and N - 1 edges.
+
+Equivalently, a **tree** is a graph in which any tw vertices are connected by exactly one path.
 
 The **height** of a tree is a number of edges from the root to the lowest leaf.
 
@@ -15,10 +17,6 @@ The **degree** of a node is the number of nodes it is connected to.
 - Adjacency matrix (not efficient in terms of memory - O(n^2))
 
 ![Alt text](img/image-2.png)
-
-## Binary Trees
-
-**Binary trees** are trees for which every node has at most two child nodes.
 
 ### Depth-first Traversal/Search:
 
@@ -60,6 +58,8 @@ A breadth-first traversal starts at the root, and **always visits all the nodes 
 **In-order Traversal:** The in-order traversal performs the traversal operations in the sequence: **LVR**, starting at the root. That is, the left subtree of a node is always traversed before the node is visited, and the right subtree of a node is always traversed after the node is visited. **In-order traversal is neither breadth-first, nor depth-first traversal**.
 
 **Post-order Traversal:** The post-order traversal starts at the root and performs the traversal operations in the sequence: **LRV**. That is, both the left and right subtrees of a node t are traversed before t is visited. Again, this is **neither a breadth-first, nor depth-first traversal**.
+
+These traversals can be extended to n-ary trees, not just binary.
 
 ## Binary Search Trees (BST)
 
