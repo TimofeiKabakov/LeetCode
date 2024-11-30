@@ -1,27 +1,38 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
+    # Proper Solution
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
-        if(not root):
-            return 0
+        self.maximum_diameter = 0
 
-        def maxDepth(node: Optional[TreeNode]) -> int:
-            if(not node):
+        def dfs(root):
+            if not root:
                 return 0
-            
-            return max(maxDepth(node.left), maxDepth(node.right)) + 1
 
-        left = 0
-        right = 0
+            length_left = dfs(root.left)
+            length_right = dfs(root.right)
 
-        if(root.left):
-            left = maxDepth(root.left)
+            self.maximum_diameter = max(self.maximum_diameter, length_left + length_right)
 
-        if(root.right):
-            right = maxDepth(root.right) 
+            return max(length_left, length_right) + 1
+        
+        dfs(root)
 
-        return max(left + right, max(self.diameterOfBinaryTree(root.left), self.diameterOfBinaryTree(root.right)))
+        return self.maximum_diameter
+
+
+
+# Another Solution:
+# def height_tree(root: Optional[TreeNode]) -> int:
+#     if not root:
+#         return 0
+#     return max(height_tree(root.left), height_tree(root.right)) + 1
+
+# class Solution:
+#     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+#         if not root:
+#             return 0
+
+#         passing_diameter = height_tree(root.left) + height_tree(root.right)
+#         max_children = max(self.diameterOfBinaryTree(root.left), self.diameterOfBinaryTree(root.right))
+
+#         return max(passing_diameter, max_children)
+        
