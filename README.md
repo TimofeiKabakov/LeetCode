@@ -1,4 +1,4 @@
-My NeetCode 150 Stats:
+My **NeetCode 150** Stats:
 | Category                | Problem                         | Status    | Link                                                                   | Notes                                                                                                                                                                                       | Date       |
 | ----------------------- | ------------------------------- | --------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
 | Trees                   | Invert Binary Tree              | Completed | [Link](https://leetcode.com/problems/invert-binary-tree/)              | Use python's way of interchanging variables                                                                                                                                                 | 11-28-2024 |
