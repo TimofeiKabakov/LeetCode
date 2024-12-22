@@ -1,34 +1,34 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        i_add_ind = [1, -1, 0, 0]
-        j_add_ind = i_add_ind[::-1]
+        ROWS, COLS = len(board), len(board[0])
+        movement = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        visited = set()
 
-        def wordSearch(i: int, j: int, index: int, visited):
-            # Check for an already visited cell
-            if (i, j) in visited:
+        def dfs(i, j, ind):
+            if i < 0 or i == ROWS or j < 0 or j == COLS or (i, j) in visited:
                 return False
 
-            # Check for indices out of boundaries
-            if index >= len(word) or i < 0 or i >= len(board) or j < 0 or j >= len(board[0]):
+            if board[i][j] != word[ind]:
                 return False
-
-            # Check if the next cell letter matches the one in the word
-            if word[index] != board[i][j]:
-                return False
-
-            # Check if we reached the end of the word
-            if index + 1 == len(word):
+            
+            if ind == len(word) - 1:
                 return True
 
             visited.add((i, j))
 
-            for iterator in range(4):
-                if wordSearch(i + i_add_ind[iterator], j + j_add_ind[iterator], index + 1, visited.copy()):
+            for move in movement:
+                new_i = i + move[0]
+                new_j = j + move[1]
+                if dfs(new_i, new_j, ind + 1):
                     return True
             
+            visited.remove((i, j))
+
             return False
 
-        for i in range(len(board)):
-            for j in range(len(board[0])):
-                if wordSearch(i, j, 0, set()):
+        for i in range(ROWS):
+            for j in range(COLS):
+                if dfs(i, j, 0):
                     return True
+
+        return False

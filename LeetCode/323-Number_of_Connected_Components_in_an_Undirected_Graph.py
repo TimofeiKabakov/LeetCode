@@ -37,6 +37,9 @@ class Solution:
 
         return res
 
+# Time Complexity: O(V + E)
+# Space Complexity: O(V + E)
+
 # Regular approach
 # class Solution:
 #     def countComponents(self, n: int, edges: List[List[int]]) -> int:
