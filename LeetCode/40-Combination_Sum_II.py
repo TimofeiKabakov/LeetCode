@@ -3,20 +3,21 @@ class Solution:
         res = []
         candidates.sort()
 
-        def find_combinations(index, combo, current_sum):
-            if current_sum == target:
-                res.append(combo)
+        def dfs(cur_ind, cur_sum, cur):
+            if cur_sum == target:
+                res.append(cur)
                 return
-            elif index == len(candidates):
+            elif cur_sum > target or cur_ind == len(candidates):
                 return
 
-            find_combinations(index + 1, combo + [candidates[index]], current_sum + candidates[index])
+            new_ind = cur_ind
+            while new_ind < len(candidates) - 1 and candidates[new_ind] == candidates[new_ind + 1]:
+                new_ind += 1
+            
+            dfs(cur_ind + 1, cur_sum + candidates[cur_ind], cur + [candidates[cur_ind]])
+            dfs(new_ind + 1, cur_sum, cur)
 
-            while index < len(candidates) - 1 and candidates[index + 1] == candidates[index]:
-                index += 1
-            find_combinations(index + 1, combo, current_sum)
-
-        find_combinations(0, [], 0)
+        dfs(0, 0, [])
 
         return res
     
