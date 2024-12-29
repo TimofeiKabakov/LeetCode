@@ -1,15 +1,12 @@
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        haveReached = [False] * len(nums)
+        prev_ind = len(nums) - 1
 
-        haveReached[0] = True
+        for i in range(len(nums) - 1, -1, -1):
+            if i + nums[i] >= prev_ind:
+                prev_ind = i
 
-        for i, n in enumerate(nums):
-            if haveReached[i]:
-                for jump in range(1, n + 1):
-                    if i + jump < len(nums):
-                        haveReached[i + jump] = True
-                    else:
-                        return True
- 
-        return haveReached[len(haveReached) - 1]
+        return prev_ind == 0
+    
+# Time Complexity: O(n)
+# Space Complexity: O(1)
